@@ -1,14 +1,13 @@
 
 # 2.5 While Loops
-
-![counter](counter.png)
 Recall when we looked at for loops, a flowchart that visualizes the sequence and logic of this control structure looked like this:
+![counter](counter.png)
 
 In this chart for a program that counts from 0 to 10, the blue block represent the 3 components of a for statement.
 
 
-```
-for (int counter = 0; counter <= 10; counter++){
+```java
+for (int counter = 0; counter <= 10; counter++) {
     System.out.println(counter);
 }
 ```
@@ -50,9 +49,9 @@ Another type of loop is a `while` loop, which is a loop that iterates as long as
 ### General Form
 
 
-```
-while (boolean expression){
-    … // some code
+```java
+while (boolean expression) {
+    // some code
 }
 ```
 
@@ -61,26 +60,24 @@ while (boolean expression){
 Write the Count To Ten program above as a while loop.
 
 
-```
+```java
 /**
 * Count to 10 using a while loop.
 * @author: E. Fabroa
-*
 */
 
 public class WhileCount10 extends ConsoleProgram {
+    
+    public void run() {
 
-   public void run() {
+        int counter = 0;
+        
+        while (counter <= 10) {
+            System.out.println(counter);
+            counter++;
+        }
 
-
-       int counter = 0;
-
-
-       while (counter <= 10){
-           System.out.println(counter);
-           counter++;
-       }
-   }
+    }
 }
 ```
 
@@ -107,29 +104,34 @@ Write a program that prompts the user to enter a mark.   The mark must be betwee
 ![validation](datavalidation.png)
 
 
-```
+```java
 package unit2;
 import codehs.ConsoleProgram;
 
 /**
-* Count to 10 using a while loop.
+* Enter a mark from 0 to 100
 * @author: E. Fabroa
-*
 */
 
 public class DataValidation1 extends ConsoleProgram {
 
-   public void run() {
+    public void run() {
 
-       double mark = readDouble("Enter a mark (0-100): ");
+        // Declare mark variable
+        double dblMark;
 
-       while (mark < 0  || mark > 100){
-           System.out.println("Invalid input.");
-           mark = readDouble("Enter a mark (0-100): ");
-       }
+        // Get mark from user
+        dblMark = readDouble("Enter a mark (0-100): ");
 
-       System.out.println("Thank-you!!");
-   }
+        // Prompts user to enter a mark again if they enter a mark outside the required range
+        while (dblMark < 0 || dblMark > 100) {
+            System.out.println("Invalid input.");
+            dblMark = readDouble("Enter a mark (0-100): ");
+        }
+
+        System.out.println("Thank-you!!");
+
+    }
 }
 ```
 
@@ -150,29 +152,33 @@ Invalid input, please choose a, b, or c
 Choose a beverage:  b
 Great choice!!
 ```
-```
+```java
 /**
-*A program that prompts for a valid mark
+* A program that asks the user to choose a beverage
 * @author: E. Fabroa
-*
 */
 
 public class MenuValidation extends ConsoleProgram {
 
-   public void run() {
+    public void run() {
 
-       System.out.println("Beverage Menu");
-       System.out.println("a. Coffee");
-       System.out.println("b. Bottled Water");
-       System.out.println("c. Chocolate Milk");
+        System.out.println("Beverage Menu");
+        System.out.println("a. Coffee");
+        System.out.println("b. Bottled Water");
+        System.out.println("c. Chocolate Milk");
 
-       // get choice
-       char choice = readLine("Choose a beverage: ").charAt(0);
+        // Declare choice variable
+        String strChoice;
 
-       while (choice != 'a' && choice != 'b' && choice != 'c'){
-           System.out.println("Invalid input");
-           choice = readLine("Choose a beverage: ").charAt(0);
-       }
-   }
+        // Get choice from user
+        strChoice = readLine("Choose a beverage: ");
+
+        // Checks if user enters a valid option
+        while ((strChoice.length() > 1) || !(strChoice.equals("a")) && !(strChoice.equals("b")) && !(strChoice.equals("c"))){
+            System.out.println("Invalid input. Please enter a, b, or c.");
+            strChoice = readLine("Choose a beverage: ");
+        }
+        
+    }
 }
 ```
